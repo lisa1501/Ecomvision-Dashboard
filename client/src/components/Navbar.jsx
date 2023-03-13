@@ -21,7 +21,7 @@ const Navbar = () => {
         <AppBar
                 sx={{
                     position: "static",
-                    backgroundColor: "none",
+                    background: "none",
                     boxShadow: "none",
                 }}
             >
@@ -60,7 +60,7 @@ const Navbar = () => {
                         </IconButton>
                     </FlexBetween>
                     
-                </Toolbar>
+                </Toolbar> 
 
             </AppBar>
     )
