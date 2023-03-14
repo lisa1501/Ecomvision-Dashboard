@@ -17,13 +17,12 @@ const Navbar = () => {
     const theme = useTheme();
     
     return (
-        
         <AppBar
-                sx={{
-                    position: "static",
-                    background: "none",
-                    boxShadow: "none",
-                }}
+            sx={{
+                position: "static",
+                background: "none",
+                boxShadow: "none",
+            }}
             >
                 <Toolbar sx={{ justifyContent:"space-between"}}>
 
@@ -53,7 +52,7 @@ const Navbar = () => {
                                 <DarkModeOutlined  sx={{ fontSize:"25px"}} />
                             ) : (
                                 <LightModeOutlined sx={{ fontSize:"25px"}} />
-                        )} 
+                            )} 
                         </IconButton>
                         <IconButton>
                             <SettingsOutlined sx={{ fontSize:"25px"}} />
