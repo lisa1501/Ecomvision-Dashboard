@@ -11,7 +11,7 @@ import { useDispatch } from "react-redux";
 import { setMode } from "state";
 import { Toolbar,AppBar, useTheme, IconButton ,InputBase,} from "@mui/material";
 
-const Navbar = () => {
+const Navbar = ({ isSidebarOpen, setIsSidebarOpen }) => {
     
     const dispatch = useDispatch();
     const theme = useTheme();
@@ -28,7 +28,7 @@ const Navbar = () => {
 
                     {/* left side */}
                     <FlexBetween>
-                        <IconButton onClick={()=> console.log("clicked")}>
+                        <IconButton onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
                             <MenuIcon />
                         </IconButton>
                         <FlexBetween
