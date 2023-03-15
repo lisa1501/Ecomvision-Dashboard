@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { 
     Box,
     useMediaQuery,
     Card,
     CardContent,
     Typography,
+    useTheme,
+    Rating,
+    
 } from "@mui/material";
 import Header from "components/Header";
 import { useGetProductsQuery } from 'state/api';
@@ -18,19 +21,38 @@ const Product = ({
     category,
     supply,
     productStat,
+    
     }) => {
     
-    
+        const theme = useTheme();
+        const [isExpanded, setIsExpanded] = useState(false);
         return (
-        <Card>
-            <CardContent>
-                <Typography>
-                    {name}
-                </Typography>
-            
-            </CardContent>
-            
-        </Card>
+            <Card
+                sx={{
+                    backgroundImage: "none",
+                    backgroundColor: theme.palette.background.alt,
+                    borderRadius: "0.55rem",
+                }}
+                >
+                <CardContent>
+                    <Typography
+                        sx={{ fontSize: 14 }}
+                        color={theme.palette.secondary[700]}
+                        gutterBottom
+                    >
+                        {category}
+                    </Typography>
+                    <Typography variant="h5" component="div">
+                        {name}
+                    </Typography>
+                    <Typography sx={{ mb: "1.5rem" }} color={theme.palette.secondary[400]}>
+                        ${Number(price).toFixed(2)}
+                    </Typography>
+                    <Rating value={rating} readOnly />
+
+                    <Typography variant="body2">{description}</Typography>             
+                </CardContent>
+            </Card>
         );
     };
 const Products = () => {
@@ -53,15 +75,15 @@ const Products = () => {
                     }}
                 >
                     {data.map(
-            ({
-                _id,
-                name,
-                description,
-                price,
-                rating,
-                category,
-                supply,
-                productStat,
+                ({
+                    _id,
+                    name,
+                    description,
+                    price,
+                    rating,
+                    category,
+                    supply,
+                    productStat,
                 }) => (
                 <Product
                     key={_id}
@@ -76,7 +98,6 @@ const Products = () => {
                 />
                 )
             )}
-        
                 </Box>
             ):(
                 <>Loading...</>
