@@ -86,6 +86,7 @@ const Customers = () => {
                     rows={data || []}
                     columns={columns}
                 />
+                
             </Box>
         </Box>
     )
