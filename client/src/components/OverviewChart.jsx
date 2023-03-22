@@ -1,9 +1,7 @@
-import React, { useMemo } from "react";
-import { ResponsiveLine } from "@nivo/line";
-import { useTheme } from "@mui/material";
+import React from "react";
 import { useGetSalesQuery } from "state/api";
 
-const OverviewChart = ({ isDashboard = false, view }) => {
+const OverviewChart = () => {
     
     const { data, isLoading } = useGetSalesQuery();
     console.log("data", data);
