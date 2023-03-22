@@ -20,7 +20,7 @@ const Transactions = () => {
         sort: JSON.stringify(sort),
         search,
     });
-    console.log("transactions", data);
+    // console.log("transactions", data);
     const columns = [
         {
             field: "_id",
