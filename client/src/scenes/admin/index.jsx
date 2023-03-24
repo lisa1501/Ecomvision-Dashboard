@@ -7,7 +7,7 @@ import { DataGrid } from "@mui/x-data-grid";
 const Admin = () => {
     const theme = useTheme();
     const { data, isLoading } = useGetAdminsQuery();
-    console.log("data", data);
+    // console.log("data", data);
 
     const columns = [
         {
