@@ -5,6 +5,7 @@ import { Box, Button,useTheme, } from "@mui/material"
 import Header from "components/Header";
 import { DownloadOutlined,Email,PointOfSale, } from "@mui/icons-material";
 import StatBox from "components/StatBox";
+import OverviewChart from "components/OverviewChart";
 
 
 function Dashboard() {
@@ -61,6 +62,16 @@ function Dashboard() {
                         />
                     }
                 />
+
+                <Box
+                    gridColumn="span 8"
+                    gridRow="span 2"
+                    backgroundColor={theme.palette.background.alt}
+                    p="1rem"
+                    borderRadius="0.55rem"
+                    >
+                        <OverviewChart view="sales" isDashboard={true} />
+                </Box>
 
             </Box>
         </Box>
