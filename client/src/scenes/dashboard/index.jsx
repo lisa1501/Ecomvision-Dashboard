@@ -2,16 +2,49 @@ import FlexBetween from 'components/FlexBetween';
 import React from 'react';
 import { useGetDashboardQuery } from "state/api";
 import { Box, Button,useTheme, } from "@mui/material"
-import Header from "components/Header";
 import { DownloadOutlined, Email, PointOfSale, PersonAdd, Traffic } from "@mui/icons-material";
+import { DataGrid } from "@mui/x-data-grid";
+
 import StatBox from "components/StatBox";
 import OverviewChart from "components/OverviewChart";
-
+import Header from "components/Header";
 
 function Dashboard() {
     const theme = useTheme();
     const { data, isLoading } = useGetDashboardQuery();
     console.log("data", data);
+
+    const columns = [
+        {
+            field: "_id",
+            headerName: "ID",
+            flex: 1,
+        },
+        {
+            field: "userId",
+            headerName: "User ID",
+            flex: 1,
+        },
+        {
+            field: "createdAt",
+            headerName: "CreatedAt",
+            flex: 1,
+        },
+        {
+            field: "products",
+            headerName: "# of Products",
+            flex: 0.5,
+            sortable: false,
+            renderCell: (params) => params.value.length,
+        },
+        {
+            field: "cost",
+            headerName: "Cost",
+            flex: 1,
+            renderCell: (params) => `$${Number(params.value).toFixed(2)}`,
+        },
+    ];
+    
         
     return (
         <Box m="1.5rem 2.5rem">
@@ -97,6 +130,17 @@ function Dashboard() {
                     }
                 />
 
+                <Box
+                    gridColumn="span 8"
+                    gridRow="span 3"
+                >
+                    <DataGrid
+                        loading={isLoading || !data}
+                        getRowId={(row) => row._id}
+                        rows={(data && data.transactions) || []}
+                        columns={columns}
+                    />
+                </Box>
             </Box>
         </Box>
     )
