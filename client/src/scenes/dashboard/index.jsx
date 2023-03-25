@@ -1,7 +1,7 @@
 import FlexBetween from 'components/FlexBetween';
 import React from 'react';
 import { useGetDashboardQuery } from "state/api";
-import { Box, Button,useTheme,Typography } from "@mui/material"
+import { Box, Button,useTheme,Typography ,useMediaQuery } from "@mui/material"
 import { DownloadOutlined, Email, PointOfSale, PersonAdd, Traffic } from "@mui/icons-material";
 import { DataGrid } from "@mui/x-data-grid";
 
@@ -12,6 +12,7 @@ import BreakdownChart from "components/BreakdownChart";
 
 function Dashboard() {
     const theme = useTheme();
+    const isNonMediumScreens = useMediaQuery("(min-width: 1200px)");
     const { data, isLoading } = useGetDashboardQuery();
     console.log("data", data);
 
@@ -72,6 +73,9 @@ function Dashboard() {
                 gridTemplateColumns="repeat(12, 1fr)"
                 gridAutoRows="160px"
                 gap="20px"
+                sx={{
+                        "& > div": { gridColumn: isNonMediumScreens ? undefined : "span 12" },
+                    }}
             >
                 <StatBox
                     title="Total Customers"
@@ -80,7 +84,7 @@ function Dashboard() {
                     description="Since last month"
                     icon={
                         <Email
-                        sx={{ color: theme.palette.secondary[300], fontSize: "26px" }}
+                            sx={{ color: theme.palette.secondary[300], fontSize: "26px" }}
                         />
                     }
                 />
@@ -92,7 +96,7 @@ function Dashboard() {
                     description="Since last month"
                     icon={
                         <PointOfSale
-                        sx={{ color: theme.palette.secondary[300], fontSize: "26px" }}
+                            sx={{ color: theme.palette.secondary[300], fontSize: "26px" }}
                         />
                     }
                 />
@@ -103,8 +107,8 @@ function Dashboard() {
                     backgroundColor={theme.palette.background.alt}
                     p="1rem"
                     borderRadius="0.55rem"
-                    >
-                        <OverviewChart view="sales" isDashboard={true} />
+                >
+                    <OverviewChart view="sales" isDashboard={true} />
                 </Box>
 
                 <StatBox
@@ -134,6 +138,31 @@ function Dashboard() {
                 <Box
                     gridColumn="span 8"
                     gridRow="span 3"
+                    sx={{
+                        "& .MuiDataGrid-root": {
+                            border: "none",
+                            borderRadius: "5rem",
+                        },
+                        "& .MuiDataGrid-cell": {
+                            borderBottom: "none",
+                        },
+                        "& .MuiDataGrid-columnHeaders": {
+                            backgroundColor: theme.palette.background.alt,
+                            color: theme.palette.secondary[100],
+                            borderBottom: "none",
+                        },
+                        "& .MuiDataGrid-virtualScroller": {
+                            backgroundColor: theme.palette.background.alt,
+                        },
+                        "& .MuiDataGrid-footerContainer": {
+                            backgroundColor: theme.palette.background.alt,
+                            color: theme.palette.secondary[100],
+                            borderTop: "none",
+                        },
+                        "& .MuiDataGrid-toolbarContainer .MuiButton-text": {
+                            color: `${theme.palette.secondary[200]} !important`,
+                        },
+                    }}
                 >
                     <DataGrid
                         loading={isLoading || !data}
@@ -143,17 +172,27 @@ function Dashboard() {
                     />
                 </Box>
 
-                <Box>
+                <Box
+                    gridColumn="span 4"
+                    gridRow="span 3"
+                    backgroundColor={theme.palette.background.alt}
+                    p="1.5rem"
+                    borderRadius="0.55rem"
+                >
                     <Typography variant="h6">
                         Sales By Category
                     </Typography>
                     <BreakdownChart isDashboard={true} />
-                    <Typography>
+                    <Typography
+                        p="0 0.6rem"
+                        fontSize="0.8rem"
+                        sx={{ color: theme.palette.secondary[200] }}
+                    >
                         Breakdown of real states and information via category for revenue
                         made for this year and total sales.
                     </Typography>
                 </Box>
-                
+
             </Box>
         </Box>
     )
