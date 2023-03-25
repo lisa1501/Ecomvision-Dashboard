@@ -3,7 +3,7 @@ import React from 'react';
 import { useGetDashboardQuery } from "state/api";
 import { Box, Button,useTheme, } from "@mui/material"
 import Header from "components/Header";
-import { DownloadOutlined, Email, PointOfSale, PersonAdd } from "@mui/icons-material";
+import { DownloadOutlined, Email, PointOfSale, PersonAdd, Traffic } from "@mui/icons-material";
 import StatBox from "components/StatBox";
 import OverviewChart from "components/OverviewChart";
 
@@ -80,7 +80,19 @@ function Dashboard() {
                     description="Since last month"
                     icon={
                         <PersonAdd
-                        sx={{ color: theme.palette.secondary[300], fontSize: "26px" }}
+                            sx={{ color: theme.palette.secondary[300], fontSize: "26px" }}
+                        />
+                    }
+                />
+
+                <StatBox
+                    title="Yearly Sales"
+                    value={data && data.yearlySalesTotal}
+                    increase="+43%"
+                    description="Since last month"
+                    icon={
+                        <Traffic
+                            sx={{ color: theme.palette.secondary[300], fontSize: "26px" }}
                         />
                     }
                 />
