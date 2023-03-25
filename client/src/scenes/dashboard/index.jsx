@@ -1,13 +1,14 @@
 import FlexBetween from 'components/FlexBetween';
 import React from 'react';
 import { useGetDashboardQuery } from "state/api";
-import { Box, Button,useTheme, } from "@mui/material"
+import { Box, Button,useTheme,Typography } from "@mui/material"
 import { DownloadOutlined, Email, PointOfSale, PersonAdd, Traffic } from "@mui/icons-material";
 import { DataGrid } from "@mui/x-data-grid";
 
 import StatBox from "components/StatBox";
 import OverviewChart from "components/OverviewChart";
 import Header from "components/Header";
+import BreakdownChart from "components/BreakdownChart";
 
 function Dashboard() {
     const theme = useTheme();
@@ -141,6 +142,18 @@ function Dashboard() {
                         columns={columns}
                     />
                 </Box>
+
+                <Box>
+                    <Typography variant="h6">
+                        Sales By Category
+                    </Typography>
+                    <BreakdownChart isDashboard={true} />
+                    <Typography>
+                        Breakdown of real states and information via category for revenue
+                        made for this year and total sales.
+                    </Typography>
+                </Box>
+                
             </Box>
         </Box>
     )
