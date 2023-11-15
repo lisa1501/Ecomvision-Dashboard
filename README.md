@@ -1,6 +1,7 @@
 ## Installation
 
-- `git clone https://github.com/lisa1501/Ecomvision-Dashboard.git && cd Ecomvision-Dashboard`
+- `git clone https://github.com/lisa1501/Ecomvision-Dashboard.git`
+- `cd Ecomvision-Dashboard`
 - install npm on client and server.  do the cd on 2 separate terminals
   - `cd client`
   - `nvm use 18.13.0`
