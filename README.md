@@ -15,7 +15,7 @@
 
 - Next create a .env file in server. It should contain the following information.
 ```bash
-MONGO_URL = " "
+MONGO_URL = 
 PORT=5001
 FRONT_END = http://localhost:3000
 ```
